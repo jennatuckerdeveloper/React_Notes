@@ -25,6 +25,9 @@ class Hello extends React.Component {
 	}
 }
 
+// React.createElement uses ES6 rest params.  This appears to be supported in the browser now.
+// I wasn't expecting that.  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters
+
 root.render(
 	React.createElement(
 		Hello,
