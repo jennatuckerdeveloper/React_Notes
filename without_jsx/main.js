@@ -16,9 +16,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 
 class Hello extends React.Component {
 	render() {
-		return React.createElement('div', null, `Hello ${this.props.toWhat}`, [
-			...this.props.children
-		])
+		return React.createElement(
+			'div',
+			null,
+			`Hello ${this.props.toWhat}`,
+			...this.props.children // can also use [this.props.children] or [...this.props.children]
+		)
 	}
 }
 
