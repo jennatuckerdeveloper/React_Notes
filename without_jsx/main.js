@@ -95,5 +95,52 @@ const BasicFunc = ({ children }) => {
 // 	null,
 // 	children
 // )
-
 // root.render(element)
+
+// With stateful class Component.
+class StatefulClass extends React.Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			active: [false, true]
+		}
+	}
+	render() {
+		return React.createElement(
+			'div',
+			null,
+			this.props.children.map((text, i) => {
+				const color = this.state.active[i] ? 'blue' : 'red'
+				return React.createElement('p', { key: i, style: { color } }, text)
+			})
+		)
+	}
+}
+
+// Runs
+// const element = React.createElement(StatefulClass, null, children)
+// root.render(element)
+
+const StatefulFunc = ({ children }) => {
+	const [textColor, setTextColor] = React.useState([true, false])
+	const switchTextColor = (i) => {
+		const copy = textColor.map(e => e)
+		copy[i] = !copy[i]
+		setTextColor(copy)
+	}
+	return React.createElement(
+		'div',
+		null,
+		children.map((text, i) => {
+			const color = textColor[i] ? 'blue' : 'red'
+			return React.createElement(
+				'p',
+				{ key: i, onClick: () => switchTextColor(i), style: { color } },
+				text
+			)
+		})
+	)
+}
+
+const element = React.createElement(StatefulFunc, null, children)
+root.render(element)
